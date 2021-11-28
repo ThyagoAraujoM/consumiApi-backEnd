@@ -9,8 +9,7 @@ app.get("/ordenaLista", (request, response) => {
   let data = request.body;
   data.listas.salaN.sort();
   data.listas.salaS.sort();
-  console.log(data);
-  response.status(200).json({ ola: "olá" });
+  response.status(200).json({ data: data });
 });
 
 app.get("/interlace", (req, res) => {
