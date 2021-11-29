@@ -4,16 +4,18 @@ const app = express();
 
 app.use(cors({ origin: "*" }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.get("/ordenaLista", (request, response) => {
-  let data = request.body;
-  data.listas.salaN.sort();
-  data.listas.salaS.sort();
-  response.status(200).json({ data: data });
+app.post("/ordenaLista", (request, response) => {
+  let data = request.body.listas;
+  console.log(data);
+  data.salaN.sort();
+  data.salaS.sort();
+  response.status(200).json({ listas: data });
 });
 
 app.get("/interlace", (req, res) => {
-  const { intervaloA, intervaloB } = req.body;
+  const { intervaloA, intervaloB } = JSON.parse(req.query.data);
   let validate = false;
 
   intervaloA[0] === intervaloB[0] || intervaloA[0] === intervaloB[1]
