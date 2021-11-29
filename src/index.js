@@ -1,10 +1,13 @@
 import express from "express";
 import cors from "cors";
 const app = express();
-
+import dotenv from "dotenv";
+dotenv.config();
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+let PORT = process.env.PORT || 3000;
 
 app.post("/ordenaLista", (request, response) => {
   let data = request.body.listas;
@@ -28,6 +31,6 @@ app.get("/interlace", (req, res) => {
   res.status(200).json({ validate: validate });
 });
 
-app.listen(8080, () => {
-  console.log("server rodando na porta 3000");
+app.listen(PORT, () => {
+  console.log("server rodando na porta " + process.env.PORT);
 });
