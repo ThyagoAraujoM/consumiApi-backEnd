@@ -9,6 +9,14 @@ app.use(express.urlencoded({ extended: true }));
 
 let PORT = process.env.PORT || 3000;
 
+app.get("/", (req, res) => {
+  res
+    .status(200)
+    .send(
+      "Apenas /ordenaLista e interlace funcionam no momento. Acesse https://consumo-api.vercel.app para entender melhor"
+    );
+});
+
 app.post("/ordenaLista", (request, response) => {
   let data = request.body.listas;
   console.log(data);
